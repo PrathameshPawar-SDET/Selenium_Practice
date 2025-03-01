@@ -3,7 +3,9 @@
 <suite name="Testing for QTrip">
     <test name="Test Execution using testng">
         <classes>
-            <class name="Seleniumpractice.tests.Basic_Commands"/>
+            <class name="Seleniumpractice.tests.Baseclass"></class>
+<!--            <class name="Seleniumpractice.tests.Basic_Commands"/>-->
+            <class name="Seleniumpractice.tests.Webdrivercommand"></class>
         </classes>
     </test>
 </suite>

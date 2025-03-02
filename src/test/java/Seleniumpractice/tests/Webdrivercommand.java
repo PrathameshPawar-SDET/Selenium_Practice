@@ -21,10 +21,10 @@ public class Webdrivercommand {
     @Test(priority = 1)
     public void Navigations(){
         driver.get("https://demoqa.com/");
-        driver.navigate().to("https://demoqa.com/elements");
+        driver.get("https://demoqa.com/elements");
     }
 
-//    @Test(priority = 2)
+    @Test(priority = 2)
     public void TextboxInteraction(){
 
         WebElement Textboxtab = driver.findElement(By.xpath("//div[@class='element-group']//div[text()='Elements']/following::li[@id='item-0'][1]"));
@@ -40,11 +40,12 @@ public class Webdrivercommand {
         WebElement permanentAdd = driver.findElement(By.id("permanentAddress"));
         permanentAdd.sendKeys("Permanent address for testing the form");
         WebElement submitButton = driver.findElement(By.xpath("//button[@id='submit']"));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)",submitButton);
         submitButton.click();
 
     }
 
-//    @Test(priority = 3)
+    @Test(priority = 3)
     public void CheckboxInteraction() throws InterruptedException{
 
         WebElement checkboxTab = driver.findElement(By.xpath("//div[@class='element-group']//div[text()='Elements']/following::span[text()='Check Box']"));
@@ -80,19 +81,20 @@ public class Webdrivercommand {
         wait.until(ExpectedConditions.elementToBeClickable(radiobuttonTab));
         radiobuttonTab.click();
 
-        List<WebElement> Radiobuttons = driver.findElements(By.xpath("//input[@type='radio']/following::label"));
+        List<WebElement> RadioButtons = driver.findElements(By.xpath("//input[@type='radio']"));
 
-        WebElement SelectedValue;
-        for(WebElement rb:Radiobuttons){
+        for(WebElement rb:RadioButtons){
+            WebElement label = driver.findElement(By.xpath("//label[@for='" + rb.getAttribute("id") + "']"));
+            String labelText = label.getText();
+            WebElement SelectedValue;
             if(rb.isEnabled()){
                 ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)",rb);
-                rb.click();
+                label.click();
                 SelectedValue = driver.findElement(By.xpath("//span[@class='text-success']"));
-
                 System.out.println("You have selected: "+SelectedValue.getText());
             }else{
-
-                System.out.println(rb.getText()+ "is disabled");
+                ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)",rb);
+                System.out.println(labelText+ " is disabled");
             }
         }
 

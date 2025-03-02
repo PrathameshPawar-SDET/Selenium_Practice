@@ -24,7 +24,7 @@ public class Webdrivercommand {
         driver.navigate().to("https://demoqa.com/elements");
     }
 
-    @Test(priority = 2)
+//    @Test(priority = 2)
     public void TextboxInteraction(){
 
         WebElement Textboxtab = driver.findElement(By.xpath("//div[@class='element-group']//div[text()='Elements']/following::li[@id='item-0'][1]"));
@@ -44,7 +44,7 @@ public class Webdrivercommand {
 
     }
 
-    @Test(priority = 3)
+//    @Test(priority = 3)
     public void CheckboxInteraction() throws InterruptedException{
 
         WebElement checkboxTab = driver.findElement(By.xpath("//div[@class='element-group']//div[text()='Elements']/following::span[text()='Check Box']"));
@@ -72,6 +72,31 @@ public class Webdrivercommand {
         for(WebElement sc:SelectedCheckbox){
             System.out.println(sc.getText());
         }
+    }
+
+    @Test(priority = 4)
+    public void radiobutton(){
+        WebElement radiobuttonTab = driver.findElement(By.xpath("//div[@class='element-group']//div[text()='Elements']/following::span[text()='Radio Button']"));
+        wait.until(ExpectedConditions.elementToBeClickable(radiobuttonTab));
+        radiobuttonTab.click();
+
+        List<WebElement> Radiobuttons = driver.findElements(By.xpath("//input[@type='radio']/following::label"));
+
+        WebElement SelectedValue;
+        for(WebElement rb:Radiobuttons){
+            if(rb.isEnabled()){
+                ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)",rb);
+                rb.click();
+                SelectedValue = driver.findElement(By.xpath("//span[@class='text-success']"));
+
+                System.out.println("You have selected: "+SelectedValue.getText());
+            }else{
+
+                System.out.println(rb.getText()+ "is disabled");
+            }
+        }
+
+
     }
 
 }

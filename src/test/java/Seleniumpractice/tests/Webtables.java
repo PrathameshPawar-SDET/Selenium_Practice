@@ -1,6 +1,7 @@
 package Seleniumpractice.tests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import Seleniumpractice.DriverSingleton;
 
+import javax.swing.*;
 import java.time.Duration;
 import java.util.List;
 
@@ -80,7 +82,42 @@ public class Webtables {
         }
 
 
+        @Test(priority = 5)
         public void editRecord(){
+        WebElement editicon = driver.findElement(By.id("edit-record-1"));
+        wait.until(ExpectedConditions.visibilityOf(editicon));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)",editicon);
+        editicon.click();
+        WebElement registationModal = driver.findElement(By.id("registration-form-modal"));
+        wait.until(ExpectedConditions.visibilityOf(registationModal));
 
+        WebElement department = driver.findElement(By.id("department"));
+        System.out.println("Department name before updating :" +department.getDomAttribute("value"));
+
+        department.clear();
+        department.sendKeys("CEO");
+        System.out.println("Department name after updating :" +department.getDomAttribute("value"));
+        WebElement submitButton = driver.findElement(By.id("submit"));
+        submitButton.click();
+        }
+
+        @Test(priority = 6)
+        public void deleteRecord(){
+        System.out.println("Rows before deleting the records...");
+        fetchtabledata();
+        WebElement deleteicon = driver.findElement(By.id("delete-record-2"));
+        wait.until(ExpectedConditions.visibilityOf(deleteicon));
+        deleteicon.click();
+        System.out.println("Rows after deleting the record...");
+        fetchtabledata();
+
+        }
+
+        @Test(priority = 7)
+        public void searchData(){
+        WebElement Searchbox = driver.findElement(By.id("searchBox"));
+        wait.until(ExpectedConditions.visibilityOf(Searchbox));
+        Searchbox.sendKeys("Alden");
+        fetchtabledata();
         }
 }

@@ -7,7 +7,8 @@
 <!--            <class name="Seleniumpractice.tests.Basic_Commands"/>-->
 <!--            <class name="Seleniumpractice.tests.Webdrivercommand"></class>-->
 <!--            <class name="Seleniumpractice.tests.Webtables"></class>-->
-            <class name="Seleniumpractice.tests.ButtonsPractices"></class>
+<!--            <class name="Seleniumpractice.tests.ButtonsPractices"></class>-->
+            <class name="Seleniumpractice.tests.Linktext"></class>
         </classes>
     </test>
 </suite>

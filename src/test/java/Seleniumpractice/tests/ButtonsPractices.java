@@ -47,6 +47,19 @@ public class ButtonsPractices {
         wait.until(ExpectedConditions.visibilityOf(righclickmessage));
         System.out.println(righclickmessage.getText());
 
+        //Dynamic Click
+        WebElement normalClick = driver.findElement(By.xpath("//button[text()='Click Me']"));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",normalClick);
+        wait.until(ExpectedConditions.visibilityOf(normalClick));
+        normalClick.click();
+
+        WebElement normalClickMsg = driver.findElement(By.id("dynamicClickMessage"));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",normalClickMsg);
+        wait.until(ExpectedConditions.visibilityOf(normalClickMsg));
+        System.out.println(normalClickMsg.getText());
+
+
+
 
     }
 }

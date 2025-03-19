@@ -16,10 +16,10 @@ public class Baseclass {
 
     }
 
-//    @AfterSuite(alwaysRun = true)
-//    public void closedriver(){
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
+    @AfterSuite(alwaysRun = true)
+    public void closedriver(){
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }

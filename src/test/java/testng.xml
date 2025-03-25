@@ -10,7 +10,8 @@
 <!--&lt;!&ndash;            <class name="Seleniumpractice.tests.ButtonsPractices"></class>&ndash;&gt;-->
 <!--            <class name="Seleniumpractice.tests.Linktext"></class>-->
 <!--            <class name="Seleniumpractice.tests.BrokenLinks"></class>-->
-            <class name="Seleniumpractice.tests.uploadsanddownloads"></class>
+<!--            <class name="Seleniumpractice.tests.uploadsanddownloads"></class>-->
+            <class name="Seleniumpractice.tests.dynamicProperties"></class>
         </classes>
     </test>
 </suite>

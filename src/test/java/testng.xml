@@ -11,7 +11,8 @@
 <!--            <class name="Seleniumpractice.tests.Linktext"></class>-->
 <!--            <class name="Seleniumpractice.tests.BrokenLinks"></class>-->
 <!--            <class name="Seleniumpractice.tests.uploadsanddownloads"></class>-->
-            <class name="Seleniumpractice.tests.dynamicProperties"></class>
+<!--            <class name="Seleniumpractice.tests.dynamicProperties"></class>-->
+            <class name="Seleniumpractice.tests.practiceForm"></class>
         </classes>
     </test>
 </suite>

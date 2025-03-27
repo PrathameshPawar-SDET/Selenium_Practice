@@ -4,10 +4,12 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import Seleniumpractice.DriverSingleton;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.Set;
 
@@ -51,9 +53,35 @@ public class practiceForm {
         WebElement dateselector = driver.findElement(By.xpath("//div[text()='1']"));
         dateselector.click();
 
-        WebElement subjectInput = driver.findElement(By.id("subjectsContainer"));
+        WebElement subjectInput = driver.findElement(By.id("subjectsInput"));
         subjectInput.sendKeys("Maths");
         subjectInput.sendKeys(Keys.ENTER);
+
+        WebElement hobbies = driver.findElement(By.cssSelector("label[for='hobbies-checkbox-1']"));
+        hobbies.click();
+
+        WebElement filupload = driver.findElement(By.id("uploadPicture"));
+        File file = new File("C:\\Users\\user\\Downloads\\sampleFile.jpeg");
+        filupload.sendKeys(file.getAbsolutePath());
+
+        WebElement currentAddress = driver.findElement(By.id("currentAddress"));
+        currentAddress.sendKeys("Building number, City, State, Country, Pincode");
+
+        Actions act = new Actions(driver);
+        driver.findElement(By.id("state")).click();
+
+        WebElement state = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='NCR']")));
+        act.moveToElement(state).click().perform();
+
+        driver.findElement(By.id("city")).click();
+        WebElement city = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='Delhi']")));
+        act.moveToElement(city).click().perform();
+
+        WebElement submit = driver.findElement(By.id("submit"));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();",submit);
+
+        WebElement modalTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("example-modal-sizes-title-lg")));
+        Assert.assertEquals(modalTitle.getText(),"Thanks for submitting the form","Form submission failed");
 
 
     }

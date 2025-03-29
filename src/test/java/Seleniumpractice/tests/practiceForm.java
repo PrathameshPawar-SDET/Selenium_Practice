@@ -1,5 +1,6 @@
 package Seleniumpractice.tests;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,6 +11,7 @@ import org.testng.annotations.Test;
 import Seleniumpractice.DriverSingleton;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Set;
 
@@ -83,7 +85,41 @@ public class practiceForm {
         WebElement modalTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("example-modal-sizes-title-lg")));
         Assert.assertEquals(modalTitle.getText(),"Thanks for submitting the form","Form submission failed");
 
+        try {
+            takeScreenShot("Formsubmission-success.png");
+        }
+        catch (IOException e){
+            System.out.println("Failed to capture screenshot :"+e.getMessage());
+        }
 
+
+        validateData("Student Name","Prathamesh Pawar");
+        validateData("Student Email","test@gmail.com");
+        validateData("Gender","Male");
+        validateData("Mobile","1234567890");
+        validateData("Date of Birth","01 July,1998");
+        validateData("Subjects","Maths");
+        validateData("Hobbies","Sports");
+        validateData("Picture","sampleFile.jpeg");
+        validateData("Address","Building number, City, State, Country, Pincode");
+        validateData("State and City","NCR Delhi");
+
+
+
+    }
+
+
+    public void validateData(String field, String expectedvalue){
+        String actualvalue = driver.findElement(By.xpath("//td[text()='"+field+"']/following-sibling::td")).getText();
+        Assert.assertEquals(actualvalue,expectedvalue,"Mismatch in "+field);
+        System.out.println("Verified "+field+ " -> "+actualvalue);
+
+    }
+
+    public void takeScreenShot(String fileName) throws IOException {
+        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(screenshot,new File(fileName));
+        System.out.println("Screenshot saved as :"+fileName);
     }
 
 }

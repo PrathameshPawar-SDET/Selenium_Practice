@@ -12,7 +12,8 @@
 <!--            <class name="Seleniumpractice.tests.BrokenLinks"></class>-->
 <!--            <class name="Seleniumpractice.tests.uploadsanddownloads"></class>-->
 <!--            <class name="Seleniumpractice.tests.dynamicProperties"></class>-->
-            <class name="Seleniumpractice.tests.practiceForm"></class>
+<!--            <class name="Seleniumpractice.tests.practiceForm"></class>-->
+            <class name="Seleniumpractice.tests.browserWindows"></class>
         </classes>
     </test>
 </suite>

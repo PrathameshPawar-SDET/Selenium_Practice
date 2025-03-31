@@ -14,7 +14,9 @@
 <!--            <class name="Seleniumpractice.tests.dynamicProperties"></class>-->
 <!--            <class name="Seleniumpractice.tests.practiceForm"></class>-->
 <!--            <class name="Seleniumpractice.tests.browserWindows"></class>-->
-            <class name="Seleniumpractice.tests.alerts"></class>
+<!--            <class name="Seleniumpractice.tests.alerts"></class>-->
+<!--            <class name="Seleniumpractice.tests.frames"></class>-->
+            <class name="Seleniumpractice.tests.nestedFrames"></class>
         </classes>
     </test>
 </suite>

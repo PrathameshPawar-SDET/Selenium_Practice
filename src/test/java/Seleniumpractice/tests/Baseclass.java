@@ -10,18 +10,18 @@ public class Baseclass {
     protected static WebDriver driver;
 
 
-    @BeforeTest(alwaysRun = true)
-    public void setupsuite(){
-        driver = DriverSingleton.getDriver();
-
-    }
-
     @AfterSuite(alwaysRun = true)
     public void closedriver(){
         if (driver != null) {
             driver.quit();
         }
+    }    @BeforeTest(alwaysRun = true)
+    public void setupsuite(){
+        driver = DriverSingleton.getDriver();
+
     }
+
+
 
 
 

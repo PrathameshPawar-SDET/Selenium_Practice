@@ -43,5 +43,28 @@ public class autoComplete {
             System.out.println("Selected Color :"+SelectedValue.getText());
             Assert.assertFalse(SelectedValue.getText().isEmpty(),"No color was selected");
 
+            inputBox.sendKeys("M");
+            Suggestions = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".auto-complete__menu div")));
+            if (!Suggestions.isEmpty()){
+                Suggestions.get(0).click();
+            }
+
+            List<WebElement> Selectedcolor = driver.findElements(By.className("auto-complete__multi-value__label"));
+            System.out.println("Selected Colors :"+Selectedcolor.size());
+            Assert.assertTrue(Selectedcolor.size()>1,"Second color was not selected");
+
+    }
+
+
+    @Test(priority = 2)
+    public void handleSingleColor(){
+        WebElement singleColorInput = driver.findElement(By.id("autoCompleteSingleInput"));
+        singleColorInput.sendKeys("I");
+        WebElement suggestion = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".auto-complete__menu div")));
+        suggestion.click();
+
+        WebElement selectValue = driver.findElement(By.className("auto-complete__single-value"));
+        System.out.println("Selected Single Color :"+selectValue.getText());
+        Assert.assertFalse(selectValue.getText().isEmpty(),"No color was selected");
     }
 }

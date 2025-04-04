@@ -19,7 +19,8 @@
 <!--            <class name="Seleniumpractice.tests.nestedFrames"></class>-->
 <!--            <class name="Seleniumpractice.tests.modalDialog"></class>-->
 <!--            <class name="Seleniumpractice.tests.accordian"></class>-->
-            <class name="Seleniumpractice.tests.autoComplete"></class>
+<!--            <class name="Seleniumpractice.tests.autoComplete"></class>-->
+            <class name="Seleniumpractice.tests.datePicker"></class>
 
         </classes>
     </test>

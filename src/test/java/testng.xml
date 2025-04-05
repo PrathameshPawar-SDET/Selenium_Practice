@@ -21,7 +21,8 @@
 <!--            <class name="Seleniumpractice.tests.accordian"></class>-->
 <!--            <class name="Seleniumpractice.tests.autoComplete"></class>-->
 <!--            <class name="Seleniumpractice.tests.datePicker"></class>-->
-            <class name="Seleniumpractice.tests.slider"></class>
+<!--            <class name="Seleniumpractice.tests.slider"></class>-->
+            <class name="Seleniumpractice.tests.progressBar"></class>
         </classes>
     </test>
 </suite>

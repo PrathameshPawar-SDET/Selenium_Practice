@@ -24,7 +24,8 @@
 <!--            <class name="Seleniumpractice.tests.slider"></class>-->
 <!--            <class name="Seleniumpractice.tests.progressBar"></class>-->
 <!--            <class name="Seleniumpractice.tests.tabs"></class>-->
-            <class name="Seleniumpractice.tests.toolTips"></class>
+<!--            <class name="Seleniumpractice.tests.toolTips"></class>-->
+            <class name="Seleniumpractice.tests.menu"></class>
         </classes>
     </test>
 </suite>

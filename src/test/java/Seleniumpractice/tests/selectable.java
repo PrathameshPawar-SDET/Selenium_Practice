@@ -49,10 +49,23 @@ public class selectable {
 
         WebElement itemtoselect = listItems.get(2);
         String text = itemtoselect.getText();
+        itemtoselect.click();
+        Assert.assertTrue(itemtoselect.getDomAttribute("class").contains("active"),"Item " +text+ " is not marked as active after clicking");
         System.out.println("Selected item from List : "+text);
+    }
+
+    @Test(priority = 2)
+    public void selecGridItem(){
+        js.executeScript("arguments[0].scrollIntoView();",demoTabgrid);
+        demoTabgrid.click();
+
+        WebElement itemtoselect = gridItems.get(6);
+        String text = itemtoselect.getText();
         itemtoselect.click();
 
-        Assert.assertTrue(itemtoselect.getDomAttribute("class").contains("active"),"Item " +text+ " is not marked as active after clicking");
+        Assert.assertTrue(itemtoselect.getDomAttribute("class").contains("active"),"Item " +text+ " is not marked as active after cliking");
+        System.out.println("Selected item from grid : "+text);
+
 
     }
 }

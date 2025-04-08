@@ -52,7 +52,7 @@ public class sortable{
         for(WebElement item : listItem){
             beforesort.add(item.getText());
         }
-        System.out.println(beforesort);
+        System.out.println("List Items before sort : " +beforesort);
 
         actions.clickAndHold(listItem.get(0)).moveToElement(listItem.get(3)).release().perform();
 
@@ -60,9 +60,31 @@ public class sortable{
         for(WebElement item : driver.findElements(By.cssSelector("#demo-tabpane-list div[class*='list-group-item']"))){
             aftersort.add((item.getText()));
         }
-        System.out.println(aftersort);
+        System.out.println("List Items after sort : "+aftersort);
 
-        Assert.assertNotEquals(beforesort,aftersort,"List order does not change after drag and drop");
+        Assert.assertNotEquals(beforesort,aftersort,"List order does not changed after drag and drop");
+    }
+
+    @Test(priority = 2)
+    public void testGridsorting(){
+        js.executeScript("arguments[0].scrollIntoView();",demoTabgrid);
+        demoTabgrid.click();
+
+        List<String> beforesort = new ArrayList<>();
+
+        for(WebElement item : gridItem){
+            beforesort.add(item.getText());
+        }
+        System.out.println("Grid Items before sort : " +beforesort);
+
+        List<String> aftersort = new ArrayList<>();
+        actions.clickAndHold(gridItem.get(3)).moveToElement(gridItem.get(5)).release().perform();
+        for(WebElement item :driver.findElements(By.cssSelector("#demo-tabpane-grid div[class*='list-group-item']"))){
+            aftersort.add(item.getText());
+        }
+        System.out.println("Grid Items after sort : " +aftersort);
+
+        Assert.assertNotEquals(beforesort,aftersort,"Grid order not changed after drag and drop");
     }
 
 

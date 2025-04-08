@@ -26,7 +26,8 @@
 <!--            <class name="Seleniumpractice.tests.tabs"></class>-->
 <!--            <class name="Seleniumpractice.tests.toolTips"></class>-->
 <!--            <class name="Seleniumpractice.tests.menu"></class>-->
-            <class name="Seleniumpractice.tests.selectMenu"></class>
+<!--            <class name="Seleniumpractice.tests.selectMenu"></class>-->
+            <class name="Seleniumpractice.tests.sortable"></class>
         </classes>
     </test>
 </suite>

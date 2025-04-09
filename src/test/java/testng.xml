@@ -28,7 +28,8 @@
 <!--            <class name="Seleniumpractice.tests.menu"></class>-->
 <!--            <class name="Seleniumpractice.tests.selectMenu"></class>-->
 <!--            <class name="Seleniumpractice.tests.sortable"></class>-->
-            <class name="Seleniumpractice.tests.selectable"></class>
+<!--            <class name="Seleniumpractice.tests.selectable"></class>-->
+            <class name="Seleniumpractice.tests.resizable"></class>
 
         </classes>
     </test>

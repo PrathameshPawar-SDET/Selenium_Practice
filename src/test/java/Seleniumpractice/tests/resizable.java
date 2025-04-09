@@ -45,11 +45,13 @@ public class resizable {
     public void resizeRestrictedBox(){
         js.executeScript("arguments[0].scrollIntoView();",restrictedBox);
         Dimension initialsize = restrictedBox.getSize();
-        System.out.println(initialsize);
+        System.out.println("Restricted box initial size : "+initialsize);
 
         actions.clickAndHold(restrictedBoxHandle).moveByOffset(50,100).release().perform();
         Dimension newSize = restrictedBox.getSize();
-        System.out.println(newSize);
+        System.out.println("Restricted box new size : " +newSize);
+        Assert.assertTrue(newSize.width<=500&&newSize.height<=300,"Size exceeded restriction limits.");
+        Assert.assertNotEquals(initialsize,newSize,"Resize did not happen for restricted box");
 
     }
 
@@ -57,11 +59,12 @@ public class resizable {
     public void resizeResizableBox(){
         js.executeScript("arguments[0].scrollIntoView();",resizableBox);
         Dimension initialsize = resizableBox.getSize();
-        System.out.println(initialsize);
+        System.out.println("Resizable box initial size : "+initialsize);
 
         actions.clickAndHold(resizableBoxHandle).moveByOffset(100,60).release().perform();
         Dimension newSize = resizableBox.getSize();
-        System.out.println(newSize);
+        System.out.println("Resizable box new size : "+newSize);
+        Assert.assertNotEquals(initialsize,newSize,"Resize did not happen for resizable box");
 
     }
 

@@ -48,6 +48,26 @@ public class droppable {
     WebElement acceptdrop;
 
 
+    //Prevent propogation
+
+    @FindBy(id = "droppableExample-tab-preventPropogation")
+    WebElement preventTab;
+
+    @FindBy(id = "dragBox")
+    WebElement propogationdrag;
+
+    @FindBy(id = "notGreedyDropBox")
+    WebElement notGreedyOuter;
+
+    @FindBy(id = "notGreedyInnerDropBox")
+    WebElement notGreedyInner;
+
+    @FindBy(id = "greedyDropBox")
+    WebElement greedyOuter;
+
+    @FindBy(id = "greedyDropBoxInner")
+    WebElement greedyIner;
+
 
     @BeforeClass
     public void setup(){
@@ -82,5 +102,21 @@ public class droppable {
         actions.dragAndDrop(acceptableDrag,acceptdrop).perform();
         Assert.assertEquals(acceptdrop.getText(),"Dropped!","Acceptable element was not acceptable");
         System.out.println("Acceptable element is accepted when drop");
+    }
+
+    @Test(priority = 3)
+    public void testPreventPropogation(){
+        js.executeScript("arguments[0].scrollIntoView();",preventTab);
+        preventTab.click();
+        actions.dragAndDrop(propogationdrag,notGreedyInner).perform();
+        Assert.assertEquals(notGreedyInner.getText(),"Dropped!","Inner (not greedy) drop failed");
+        Assert.assertTrue(notGreedyOuter.getText().contains("Dropped!"),"Outer (not greedy) drop failed");
+        System.out.println("(non greedy) inner and out text changed to Dropped!");
+
+        actions.dragAndDrop(propogationdrag,greedyIner).perform();
+        Assert.assertEquals(greedyIner.getText(),"Dropped!","Inner (greedy) drop failed");
+        Assert.assertTrue(greedyOuter.getText().startsWith("Outer droppable"),"Outer (greedy) drop failed");
+
+        System.out.println("(greedy) inner text changed to Dropped!");
     }
 }

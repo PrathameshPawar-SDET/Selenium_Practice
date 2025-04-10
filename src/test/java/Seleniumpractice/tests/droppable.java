@@ -68,6 +68,21 @@ public class droppable {
     @FindBy(id = "greedyDropBoxInner")
     WebElement greedyIner;
 
+    //Revert Draggable Tab
+
+    @FindBy(id = "droppableExample-tab-revertable")
+    WebElement revertTab;
+
+    @FindBy(id = "revertable")
+    WebElement revertable;
+
+    @FindBy(id = "notRevertable")
+    WebElement notRevertable;
+
+    @FindBy(css = "#revertableDropContainer #droppable")
+    WebElement revertDropbox;
+
+
 
     @BeforeClass
     public void setup(){
@@ -118,5 +133,44 @@ public class droppable {
         Assert.assertTrue(greedyOuter.getText().startsWith("Outer droppable"),"Outer (greedy) drop failed");
 
         System.out.println("(greedy) inner text changed to Dropped!");
+    }
+
+    @Test(priority = 4)
+    public void testRevertDraggable() throws InterruptedException{
+        js.executeScript("arguments[0].scrollIntoView();",revertTab);
+        revertTab.click();
+
+        wait.until(ExpectedConditions.visibilityOf(revertDropbox));
+
+        Point beforedrop = revertable.getLocation();
+        System.out.println("Location of revertable element before drop :"+beforedrop);
+
+        actions.dragAndDrop(revertable,revertDropbox).perform();
+        Point afterdrop = revertable.getLocation();
+        System.out.println("Location of revertable element after drop :"+afterdrop);
+        Assert.assertNotEquals(beforedrop,afterdrop,"Revertable position did not change after drop");
+
+        Thread.sleep(1000);
+        Point finalposition = revertable.getLocation();
+        System.out.println("Location of revertable element after some time :"+finalposition);
+        Assert.assertEquals(beforedrop,finalposition,"Element did not revertback");
+        System.out.println("Revertable Element revertback to original position");
+
+        Point notrevertbefore = notRevertable.getLocation();
+        System.out.println("Location of not-revertable element before drop :"+notrevertbefore);
+
+        actions.dragAndDrop(notRevertable,revertDropbox).perform();
+
+        Point notrevertafter = notRevertable.getLocation();
+        System.out.println("Location of not-revertable element after drop :"+notrevertafter);
+        Assert.assertNotEquals(notrevertbefore,notrevertafter,"Not revertable element did not move");
+
+        Thread.sleep(1000);
+
+        Point notrevertfinal = notRevertable.getLocation();
+        System.out.println("Location of not-revertable element after some time :"+notrevertafter);
+        Assert.assertNotEquals(notrevertbefore,notrevertfinal,"Not revertable element revertback to its original position");
+        System.out.println("Non-Revertable element does not revert back to it's original position");
+
     }
 }

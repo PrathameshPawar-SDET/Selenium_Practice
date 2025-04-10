@@ -13,12 +13,13 @@ public class Baseclass {
         driver = DriverSingleton.getDriver();
 
     }
-//    @AfterSuite(alwaysRun = true)
-//    public void closedriver() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
+
+    @AfterSuite(alwaysRun = true)
+    public void closedriver() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
 
 }

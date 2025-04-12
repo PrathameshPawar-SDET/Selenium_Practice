@@ -30,7 +30,8 @@
 <!--            <class name="Seleniumpractice.tests.sortable"></class>-->
 <!--            <class name="Seleniumpractice.tests.selectable"></class>-->
 <!--            <class name="Seleniumpractice.tests.resizable"></class>-->
-            <class name="Seleniumpractice.tests.droppable"></class>
+<!--            <class name="Seleniumpractice.tests.droppable"></class>-->
+            <class name="Seleniumpractice.tests.draggable"></class>
 
         </classes>
     </test>

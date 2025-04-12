@@ -75,7 +75,7 @@ public class draggable{
         driver.get("https://demoqa.com/dragabble");
     }
 
-//    @Test(priority = 1)
+    @Test(priority = 1)
     public void testSimpleDrag() throws InterruptedException{
         js.executeScript("arguments[0].scrollIntoView();",simpleTab);
         simpleTab.click();
@@ -88,7 +88,7 @@ public class draggable{
         Assert.assertNotEquals(initialLocation,finalLocation,"Position of Drag me button did not change");
     }
 
-//    @Test(priority = 2)
+    @Test(priority = 2)
     public void testAxisRestricted() throws InterruptedException{
         js.executeScript("arguments[0].scrollIntoView();",axisTab);
         axisTab.click();

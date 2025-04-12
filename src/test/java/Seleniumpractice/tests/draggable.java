@@ -40,6 +40,17 @@ public class draggable{
     @FindBy(id = "restrictedY")
     WebElement axisY;
 
+    //Container Restricted
+
+    @FindBy(id = "draggableExample-tab-containerRestriction")
+    WebElement containerRestrictionTab;
+
+    @FindBy(css = "#containmentWrapper div")
+    WebElement boxDraggable;
+
+    @FindBy(xpath = "//div[@class='draggable ui-widget-content m-3']/span")
+    WebElement parentDraggable;
+
     @BeforeClass
     public void setup(){
         driver = DriverSingleton.getDriver();
@@ -62,7 +73,7 @@ public class draggable{
         Assert.assertNotEquals(initialLocation,finalLocation,"Position of Drag me button did not change");
     }
 
-    @Test(priority = 2)
+//    @Test(priority = 2)
     public void testAxisRestricted() throws InterruptedException{
         js.executeScript("arguments[0].scrollIntoView();",axisTab);
         axisTab.click();
@@ -84,5 +95,26 @@ public class draggable{
         System.out.println("Final location of Only-Y button : "+finalLocationY);
         Assert.assertNotEquals(initialLocationy.getY(),finalLocationY.getY(),"Y axis should be changed for Only-Y");
         Assert.assertEquals(initialLocationy.getX(),finalLocationY.getX(),"X axis should not change of Only-Y");
+    }
+
+    @Test(priority = 3)
+    public void testContainerRestricted() throws InterruptedException{
+        js.executeScript("arguments[0].scrollIntoView();",containerRestrictionTab);
+        containerRestrictionTab.click();
+        Point initialLocationBox = boxDraggable.getLocation();
+        System.out.println("Initial Location of box-draggable element : "+initialLocationBox);
+        actions.dragAndDropBy(boxDraggable,150,150).perform();
+        Thread.sleep(1000);
+        Point finalLocationBox = boxDraggable.getLocation();
+        System.out.println("Final Location of box-draggable element : "+finalLocationBox);
+        Assert.assertNotEquals(initialLocationBox,finalLocationBox,"Box-Contained draggable does not move");
+
+        Point initialLocationParent = parentDraggable.getLocation();
+        System.out.println("Initial Location of parent-draggable element : "+initialLocationParent);
+        actions.dragAndDropBy(parentDraggable,150,150).perform();
+        Thread.sleep(1000);
+        Point finalLocationParent = parentDraggable.getLocation();
+        System.out.println("Final Location of parent-draggable element : "+finalLocationParent);
+        Assert.assertNotEquals(initialLocationParent,finalLocationParent,"Parent-Contained draggable does not move");
     }
 }

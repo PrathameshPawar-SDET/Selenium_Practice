@@ -51,6 +51,21 @@ public class draggable{
     @FindBy(xpath = "//div[@class='draggable ui-widget-content m-3']/span")
     WebElement parentDraggable;
 
+    //Cursor Style
+    @FindBy(id = "draggableExample-tab-cursorStyle")
+    WebElement cusrsorStyleTab;
+
+    @FindBy(id = "cursorCenter")
+    WebElement centerDraggable;
+
+    @FindBy(id = "cursorTopLeft")
+    WebElement topDraggable;
+
+    @FindBy(id = "cursorBottom")
+    WebElement bottomDraggable;
+
+
+
     @BeforeClass
     public void setup(){
         driver = DriverSingleton.getDriver();
@@ -116,5 +131,34 @@ public class draggable{
         Point finalLocationParent = parentDraggable.getLocation();
         System.out.println("Final Location of parent-draggable element : "+finalLocationParent);
         Assert.assertNotEquals(initialLocationParent,finalLocationParent,"Parent-Contained draggable does not move");
+    }
+
+    @Test(priority = 4)
+    public void testCursorStyle(){
+        js.executeScript("arguments[0].scrollIntoView();",cusrsorStyleTab);
+        cusrsorStyleTab.click();
+
+        Point initaLocationCenter = centerDraggable.getLocation();
+        System.out.println("Initial location of Center cursor : " +initaLocationCenter);
+        actions.clickAndHold(centerDraggable).moveByOffset(50,50).release().perform();
+        Point newLocationCenter = centerDraggable.getLocation();
+        System.out.println("New location of Center cursor : " +newLocationCenter);
+        Assert.assertNotEquals(initaLocationCenter,newLocationCenter,"Curson center drag failed");
+
+        Point initaLocationTop = topDraggable.getLocation();
+        System.out.println("Initial location of Center cursor : " +initaLocationTop);
+        actions.clickAndHold(topDraggable).moveByOffset(50,50).release().perform();
+        Point newLocationTop = topDraggable.getLocation();
+        System.out.println("New location of Center cursor : " +newLocationTop);
+        Assert.assertNotEquals(initaLocationTop,newLocationTop,"Curson Top drag failed");
+
+        Point initaLocationBottom = bottomDraggable.getLocation();
+        System.out.println("Initial location of Center cursor : " +initaLocationBottom);
+        actions.clickAndHold(bottomDraggable).moveByOffset(50,50).release().perform();
+        Point newLocationBottom = bottomDraggable.getLocation();
+        System.out.println("New location of Center cursor : " +newLocationBottom);
+        Assert.assertNotEquals(initaLocationBottom,newLocationBottom,"Curson bottom drag failed");
+
+
     }
 }
